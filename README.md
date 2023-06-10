@@ -4,6 +4,7 @@
 
 * Figma
 * Картинки
+* HTML5
 
 **Figma**
 
