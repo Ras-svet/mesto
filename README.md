@@ -17,4 +17,4 @@
 
 **Github Pages**
 
-* [Ссфлка на github pages проекта](https://ras-svet.github.io/mesto/)
+* [Ссылка на github pages проекта](https://ras-svet.github.io/mesto/)
