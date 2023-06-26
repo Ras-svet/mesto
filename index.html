@@ -30,54 +30,22 @@
 				<button type="button" class="profile__add-button" aria-label="кнопка добавления контента"></button>
 			</section>
 			<section class="elements">
-				<div class="element">
-					<img class="element__image" src="images/dombay.jpg" alt="Домбай">
-					<div class="element__block">
-						<h2 class="element__title">Домбай</h2>
-						<button type="button" class="element__like" aria-label="кнопка отметки нравится"></button>
+				<template id="element">
+					<div class="element">
+						<button type="button" class="element__trash" aria-label="кнопка для удаления карточки"></button>
+						<img class="element__image" src="#" alt="Домбай">
+						<div class="element__block">
+							<h2 class="element__title"></h2>
+							<button type="button" class="element__like" aria-label="кнопка отметки нравится"></button>
+						</div>
 					</div>
-				</div>
-				<div class="element">
-					<img class="element__image" src="images/karachaevsk.jpg" alt="Карачаевс">
-					<div class="element__block">
-						<h2 class="element__title">Карачаевск</h2>
-						<button type="button" class="element__like" aria-label="кнопка отметки нравится"></button>
-					</div>
-				</div>
-				<div class="element">
-					<img class="element__image" src="images/elbrus.jpg" alt="Эльбрус">
-					<div class="element__block">
-						<h2 class="element__title">Эльбрус</h2>
-						<button type="button" class="element__like" aria-label="кнопка отметки нравится"></button>
-					</div>
-				</div>
-				<div class="element">
-					<img class="element__image" src="images/elbrus.jpg" alt="Эльбрус">
-					<div class="element__block">
-						<h2 class="element__title">Эльбрус</h2>
-						<button type="button" class="element__like" aria-label="кнопка отметки нравится"></button>
-					</div>
-				</div>
-				<div class="element">
-					<img class="element__image" src="images/dombay.jpg" alt="Домбай">
-					<div class="element__block">
-						<h2 class="element__title">Домбай</h2>
-						<button type="button" class="element__like" aria-label="кнопка отметки нравится"></button>
-					</div>
-				</div>
-				<div class="element">
-					<img class="element__image" src="images//karachaevsk.jpg" alt="Карачаевс">
-					<div class="element__block">
-						<h2 class="element__title">Карачаевск</h2>
-						<button type="button" class="element__like" aria-label="кнопка отметки нравится"></button>
-					</div>
-				</div>
+				</template>
 			</section>
 		</main>
 		<footer class="footer">
 			<p class="footer__copyright">&#169; 2020 Mesto Russia</p>
 		</footer>
-		<section class="popup">
+		<section class="popup popup_type_profile">
 			<div class="popup__container">
 				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы редактирования"></button>
 				<h2 class="popup__title">Редактировать профиль</h2>
@@ -88,7 +56,26 @@
 				</form>
 			</div>
 		</section>
-  </div>
+		<section class="popup popup_type_card">
+			<div class="popup__container">
+				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы добавления карточки"></button>
+				<h2 class="popup__title">Новое место</h2>
+				<form class="popup__forms" name="card-information">
+					<input class="popup__field popup__field_type_title" name="title" type="text" maxlength="40" placeholder="Название">
+					<input class="popup__field popup__field_type_src" name="src" type="text" placeholder="Ссылка на картинку">
+					<button class="popup__save-button" type="submit" aria-label="кнопка сохранения изменений">Создать</button>
+				</form>
+			</div>
+		</section>
+		<section class="popup popup_type_fullscreen">
+			<div class="popup-fullscreen__container">
+				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы полноэкранного режима"></button>
+				<img class="popup-fullscreen__photo" src="#" alt="#">
+				<h2 class="popup-fullscreen__title"></h2>
+			</div>
+		</section>
+	</div>
+	<script src="scripts/constants.js"></script>
 	<script src="scripts/index.js"></script>
 </body>
 </html>
