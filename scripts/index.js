@@ -16,8 +16,8 @@ const closePopupCard = popupCard.querySelector(".popup__close-button");
 const addPopupCard = document.querySelector(".profile__add-button");
 // переменные для открытия карточки в полноэкранный режим
 const popupFullPicture = document.querySelector(".popup_type_fullscreen");
-const titleFullPicture = popupFullPicture.querySelector(".popup-fullscreen__title");
-const photoFullPicture = popupFullPicture.querySelector(".popup-fullscreen__photo");
+const titleFullPicture = popupFullPicture.querySelector(".popup__text");
+const photoFullPicture = popupFullPicture.querySelector(".popup__picture");
 const closeButtonFullPicture = popupFullPicture.querySelector(".popup__close-button");
 // открытие popup
 function openPopup (popup) {
