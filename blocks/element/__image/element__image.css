@@ -2,5 +2,8 @@
 	object-fit: cover;
 	width: 282px;
 	height: 282px;
+	object-fit: cover;
+	box-sizing: border-box;
 	border-radius: 10px 10px 0px 0px;
+	cursor: pointer;
 }
