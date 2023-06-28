@@ -33,15 +33,14 @@ function handleFormSubmit (evt) {
 	personJob.textContent = job;
 	closePopup(popupProfile);
 }
-// добавление новой карточки
-function createCard (evt) {
+// отправка формы
+function addCard (evt) {
 	evt.preventDefault();
-	const newCard = {name: titleCardInput.value, link: srcCardInput.value}
-	closePopup(popupCard)
-	return newCard
+	const newCard = createCard({name: titleCardInput.value, link: srcCardInput.value});
+	elementCards.prepend(newCard);
 }
 // отрисовка карточек
-function addCard(element) {
+function createCard(element) {
 	const elementTemplate = document.querySelector('#element').content;
 	const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
 	elementCard.querySelector('.element__trash').addEventListener('click', () => {
@@ -58,7 +57,6 @@ function addCard(element) {
 		evt.target.classList.toggle('element__like_active')
 	})
 	return elementCard;
-	// elementCards.append(elementCard);
 }
 // закрытие popup
 function closePopup (popup) {
@@ -71,7 +69,7 @@ function createFullscreen(link, name) {
 	photoFullPicture.alt = name;
 }
 // отрисовка карточек из массива
-initialElements.forEach((item) => elementCards.append(addCard(item)))
+initialElements.forEach((item) => elementCards.append(createCard(item)))
 // наполнение popup профиля изначальными значениями
 buttonEditProfile.addEventListener('click', function() {
 	nameInput.value = personName.textContent;
@@ -88,6 +86,9 @@ buttonEditProfile.addEventListener('click', () => openPopup(popupProfile));
 buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));
 
 formProfileElement.addEventListener('submit', handleFormSubmit);
-formCardElement.addEventListener('submit', (evt) => elementCards.prepend(addCard(createCard(evt))));
+formCardElement.addEventListener('submit', (evt) => {
+	addCard(evt);
+	closePopup(popupCard);
+});
 
 buttonCloseFullPicture.addEventListener('click', () => closePopup(popupFullPicture));
