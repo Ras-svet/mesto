@@ -8,5 +8,5 @@
 .popup__save-button_disabled:hover {
 	background-color: #fff;
 	opacity: .2;
-	cursor: default
+	cursor: default;
 }
