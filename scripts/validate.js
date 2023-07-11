@@ -14,12 +14,12 @@ const hideInputError = (lib, formElement, inputElement) => {
 };
 
 // функция проверки валидности инпутов и показа или скрытия ошибок
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, lib) => {
 	// const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
 	if (!inputElement.validity.valid) {
-		showInputError(config, formElement, inputElement, inputElement.validationMessage);
+		showInputError(lib, formElement, inputElement, inputElement.validationMessage);
 	} else {
-		hideInputError(config, formElement, inputElement);
+		hideInputError(lib, formElement, inputElement);
 	};
 };
 
@@ -42,11 +42,11 @@ const hideButton = (lib, buttonElement) => {
 	buttonElement.disabled = true;
 }
 
-const toggleButton = (inputList, buttonElement) => {
+const toggleButton = (inputList, buttonElement, lib) => {
 	if (hasInvalidInput(inputList)) {
-		hideButton(config, buttonElement);
+		hideButton(lib, buttonElement);
 	} else {
-		showButton(config, buttonElement);
+		showButton(lib, buttonElement);
 	};
 };
 
@@ -56,8 +56,8 @@ const setEventListeners = (lib, formElement) => {
 	const buttonElement = formElement.querySelector(lib.submitButtonSelector);
 	inputList.forEach((inputElement) => {
 		inputElement.addEventListener('input', function() {
-			checkInputValidity(formElement, inputElement);
-			toggleButton(inputList, buttonElement);
+			checkInputValidity(formElement, inputElement, lib);
+			toggleButton(inputList, buttonElement, lib);
 		});
 	});
 };
@@ -68,7 +68,7 @@ const enableValidation = (lib) => {
 		formElement.addEventListener('submit', function (evt) {
 			evt.preventDefault();
 		});
-		setEventListeners(config, formElement);
+		setEventListeners(lib, formElement);
 	});
 };
 
