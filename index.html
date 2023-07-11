@@ -50,8 +50,10 @@
 				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы редактирования"></button>
 				<h2 class="popup__title">Редактировать профиль</h2>
 				<form class="popup__forms" name="user-information">
-					<input class="popup__field popup__field_type_name" name="name" type="text" maxlength="40">
-					<input class="popup__field popup__field_type_job" name="job" type="text" maxlength="30">
+					<input class="popup__field popup__field_type_name" name="input-name" type="text" minlength="2" maxlength="40" placeholder="Имя" required>
+					<span class="popup__field-error" id="input-name-error"></span>
+					<input class="popup__field popup__field_type_job" name="input-job" type="text" minlength="2" maxlength="200" placeholder="О себе" required>
+					<span class="popup__field-error" id="input-job-error"></span>
 					<button class="popup__save-button" type="submit" aria-label="кнопка сохранения изменений">Сохранить</button>
 				</form>
 			</div>
@@ -61,9 +63,11 @@
 				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы добавления карточки"></button>
 				<h2 class="popup__title">Новое место</h2>
 				<form class="popup__forms" name="card-information">
-					<input class="popup__field popup__field_type_title" name="title" type="text" maxlength="40" placeholder="Название">
-					<input class="popup__field popup__field_type_src" name="src" type="text" placeholder="Ссылка на картинку">
-					<button class="popup__save-button" type="submit" aria-label="кнопка сохранения изменений">Создать</button>
+					<input class="popup__field popup__field_type_title" name="input-title" type="text" minlength="2" maxlength="30" placeholder="Название" required>
+					<span class="popup__field-error" id="input-title-error"></span>
+					<input class="popup__field popup__field_type_src" name="input-src" type="url" placeholder="Ссылка на картинку" required>
+					<span class="popup__field-error" id="input-src-error"></span>
+					<button class="popup__save-button popup__save-button_disabled" type="submit" aria-label="кнопка сохранения изменений">Создать</button>
 				</form>
 			</div>
 		</section>
@@ -75,7 +79,9 @@
 			</div>
 		</section>
 	</div>
+
 	<script src="scripts/constants.js"></script>
 	<script src="scripts/index.js"></script>
+	<script src="scripts/validate.js"></script>
 </body>
 </html>
