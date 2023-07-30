@@ -1,15 +1,9 @@
-import { openPopup, closePopup } from "./index.js";
-
-const popupFullPicture = document.querySelector(".popup_type_fullscreen");
-const titleFullPicture = popupFullPicture.querySelector(".popup__text");
-const photoFullPicture = popupFullPicture.querySelector(".popup__picture");
-const buttonCloseFullPicture = popupFullPicture.querySelector(".popup__close-button");
-
 export class Card {
-	constructor(data, templateSelector) {
+	constructor(data, templateSelector, openFullScreen) {
 		this._link = data.link;
 		this._title = data.name;
 		this._template = templateSelector;
+		this._openFullScreen = openFullScreen;
 	}
 
 	_getTemplate() {
@@ -23,17 +17,12 @@ export class Card {
 		});
 
 		this._cardElement.querySelector('.element__image').addEventListener('click', () => {
-			this._openFullScreen();
-			this._createFullscreen();
+			this._openFullScreen(this._title, this._link)
 		});
 
 		this._cardElement.querySelector('.element__like').addEventListener('click', (evt) => {
 			this._like(evt)
 		});
-
-		buttonCloseFullPicture.addEventListener('click', () => {
-			this._closeFullScreen();
-		})
 	}
 
 	_deleteCard() {
@@ -44,25 +33,12 @@ export class Card {
 		evt.target.classList.toggle('element__like_active')
 	}
 
-	_createFullscreen() {
-		titleFullPicture.textContent = this._title;
-		photoFullPicture.src = this._link;
-		photoFullPicture.alt = this._title;
-	}
-
-	_openFullScreen() {
-		openPopup(popupFullPicture);
-	}
-
-	_closeFullScreen() {
-		closePopup(popupFullPicture);
-	}
-
 	createCard() {
 		this._cardElement = this._getTemplate();
+		this._cardImage = this._cardElement.querySelector('.element__image');
 		this._cardElement.querySelector('.element__title').textContent = this._title;
-		this._cardElement.querySelector('.element__image').src = this._link;
-		this._cardElement.querySelector('.element__image').alt = this._title;
+		this._cardImage.src = this._link;
+		this._cardImage.alt = this._title;
 
 		this._setEventListeners();
 		return this._cardElement

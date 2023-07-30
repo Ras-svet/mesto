@@ -26,7 +26,6 @@ export const initialElements = [
 ];
 
 export const config = {
-	formSelector: '.popup__forms',
 	inputSelector: '.popup__field',
 	submitButtonSelector: '.popup__save-button',
 	inactiveButtonClass: 'popup__save-button_disabled',

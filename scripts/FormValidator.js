@@ -1,7 +1,6 @@
 export class FormValidator {
 	constructor(config, form) {
 		this._form = form;
-		this._formSelector = config.formSelector;
 		this._submitButton = config.submitButtonSelector;
 		this._input = config.inputSelector;
 		this._inputErr = config.inputErrorClass;
@@ -35,21 +34,16 @@ export class FormValidator {
 		});
 	}
 
-	_showButton() {
+	_enableButton() {
 		this._buttonElement.classList.remove(this._buttonInactive);
 		this._buttonElement.disabled = false;
 	}
 
-	_hideButton() {
-		this._buttonElement.classList.add(this._buttonInactive);
-		this._buttonElement.disabled = true;
-	}
-
 	_toggleButton() {
 		if (this._hasInvalidInput()) {
-			this._hideButton();
+			this.disableButton();
 		} else {
-			this._showButton();
+			this._enableButton();
 		};
 	}
 
@@ -62,16 +56,15 @@ export class FormValidator {
 		});
 	}
 
-	resetErrorForm() {
+	disableButton() {
+		this._buttonElement.classList.add(this._buttonInactive);
+		this._buttonElement.disabled = true;
+	}
+
+	resetFormErrors() {
 		this._inputList.forEach((inputElement) => {
 			this._hideInputError(inputElement)
 		})
-	}
-
-	disableFormButton() {
-		if (this._buttonElement) {
-			this._hideButton();
-		}
 	}
 
 	enableValidation() {
