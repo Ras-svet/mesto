@@ -1,4 +1,4 @@
-const initialElements = [
+export const initialElements = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,7 +25,7 @@ const initialElements = [
   }
 ];
 
-const config = {
+export const config = {
 	formSelector: '.popup__forms',
 	inputSelector: '.popup__field',
 	submitButtonSelector: '.popup__save-button',
