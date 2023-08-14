@@ -1,9 +1,9 @@
 export class Card {
-	constructor(data, templateSelector, openFullScreen) {
+	constructor(data, templateSelector, handleCardClick) {
 		this._link = data.link;
 		this._title = data.name;
 		this._template = templateSelector;
-		this._openFullScreen = openFullScreen;
+		this._openFullScreen = handleCardClick;
 	}
 
 	_getTemplate() {

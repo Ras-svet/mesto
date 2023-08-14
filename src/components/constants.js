@@ -31,3 +31,13 @@ export const config = {
 	inactiveButtonClass: 'popup__save-button_disabled',
 	inputErrorClass: 'popup__field_type_error',
 };
+
+// переменные для popup профиля
+export const popupProfile = document.querySelector(".popup_type_profile");
+export const formProfileElement = document.querySelector('[name="user-information"]');
+export const nameInput = formProfileElement.querySelector(".popup__field_type_name");
+export const jobInput = formProfileElement.querySelector(".popup__field_type_job");
+export const buttonEditProfile = document.querySelector(".profile__edit-button");
+// переменные для poopup добавления карточки
+export const popupCard = document.querySelector(".popup_type_card");
+export const buttonAddPopupCard = document.querySelector(".profile__add-button");
