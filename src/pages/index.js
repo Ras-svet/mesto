@@ -16,7 +16,7 @@ import {
 	buttonEditProfile,
 	popupCard,
 	buttonAddPopupCard
-} from "../components/constants.js"
+} from "../utils/constants.js"
 
 // экземпляры попапов
 const popupFullCard = new PopupWithImage('.popup_type_fullscreen');
@@ -29,8 +29,8 @@ const popupProfileEdit = new PopupWithForm('.popup_type_profile', handleEditForm
 popupProfileEdit.setEventListeners();
 
 const userProfile = new UserInfo({
-	name: '.profile__name',
-	job: '.profile__job'
+	nameSelector: '.profile__name',
+	jobSelector: '.profile__job'
 });
 
 // изменение инфрормации профиля
@@ -41,7 +41,7 @@ function handleEditFormSubmit (data) {
 // добавление новой карточки
 function addCard (data) {
 	const newCard = createCard(data, '#element', handleCardClick);
-	initialCardsList.addItemByPrepend(newCard);
+	initialCardsList.addItem(newCard);
 }
 
 // отрисовка карточек из массива
@@ -72,14 +72,7 @@ const popupProfileValidated = new FormValidator(config, popupProfile);
 popupProfileValidated.enableValidation();
 
 const popupCardValidated = new FormValidator(config, popupCard);
-popupCardValidated.enableValidation();
-
-// наполнение popup профиля изначальными значениями
-buttonEditProfile.addEventListener('click', function() {
-	const {name, job} = userProfile.getUserInfo();
-	nameInput.value = name;
-	jobInput.value = job
-})
+popupCardValidated.enableValidation();~
 
 buttonAddPopupCard.addEventListener('click', (evt) => {
 	popupCardAdd.open();
@@ -88,6 +81,9 @@ buttonAddPopupCard.addEventListener('click', (evt) => {
 })
 
 buttonEditProfile.addEventListener('click', () => {
+	const {name, job} = userProfile.getUserInfo();
+	nameInput.value = name;
+	jobInput.value = job
 	popupProfileEdit.open();
 	popupProfileValidated.resetFormErrors();
 	popupProfileValidated.disableButton();
