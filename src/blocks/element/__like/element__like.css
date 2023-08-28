@@ -1,18 +1,11 @@
 .element__like {
-	background-image: url(../../../images/like.svg);
-	background-repeat: no-repeat;
-	background-position: 50%;
-	background-color: transparent;
+	display: flex;
+	flex-direction: column;
 	border: 0;
 	width: 22px;
-	height: 19px;
+	height: 40px;
 	margin-right: 5px;
 	margin-top: 0;
 	align-self: start;
 	padding: 0;
-	cursor: pointer;
-}
-
-.element__like:hover {
-	opacity: 0.5;
 }

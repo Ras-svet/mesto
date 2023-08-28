@@ -6,6 +6,7 @@ import { Popup } from "../components/Popup.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js"
+import { Api } from "../components/Api.js";
 
 import {
 	initialElements,
@@ -28,10 +29,30 @@ popupCardAdd.setEventListeners();
 const popupProfileEdit = new PopupWithForm('.popup_type_profile', handleEditFormSubmit);
 popupProfileEdit.setEventListeners();
 
+const api = new Api({
+	url: 'https://mesto.nomoreparties.co/v1/cohort-74',
+	headers: {
+		authorization: 'c55a96e6-da21-4263-9b88-67e69c11521a',
+		'Content-Type': 'application/json'
+	}
+})
+
 const userProfile = new UserInfo({
 	nameSelector: '.profile__name',
 	jobSelector: '.profile__job'
 });
+
+let personalId
+
+Promise.all([api.getUserInfo(), api.getCards()])
+	.then(([userData, cards]) => {
+		userProfile.setUserInfo(userData);
+		personalId = userData._id
+		cards.forEach(card => {
+			const cardElement = createCard(card, '#element', handleCardClick, personalId);
+			initialCardsList.addItem(cardElement)
+		})
+	})
 
 // изменение инфрормации профиля
 function handleEditFormSubmit (data) {
@@ -46,14 +67,12 @@ function addCard (data) {
 
 // отрисовка карточек из массива
 const initialCardsList = new Section({
-	items: initialElements,
+	// items: initialElements,
 	renderer: (item) => {
-		const newCard = createCard(item, '#element', handleCardClick);
+		const newCard = createCard(item, '#element', handleCardClick, personalId);
 		initialCardsList.addItemByAppend(newCard)
 	}
 }, '.elements')
-
-initialCardsList.renderItems()
 
 // открытие полного экрана карточки
 function handleCardClick(name, link) {
@@ -61,8 +80,8 @@ function handleCardClick(name, link) {
 }
 
 // создание экземпляра карточки
-function createCard(data, selector, func) {
-	const card = new Card(data, selector, func);
+function createCard(data, selector, func, personalId) {
+	const card = new Card(data, selector, func, personalId);
 	const cardElement = card.createCard();
 	return cardElement
 } 

@@ -1,5 +1,9 @@
 export class Card {
-	constructor(data, templateSelector, handleCardClick) {
+	constructor(data, templateSelector, handleCardClick, personalId) {
+		this._personalId = personalId;
+		this._cardId = data._id;
+		this._ownerId = data
+		this._likesNumber = data.likes
 		this._link = data.link;
 		this._title = data.name;
 		this._template = templateSelector;
@@ -20,7 +24,7 @@ export class Card {
 			this._openFullScreen(this._title, this._link)
 		});
 
-		this._cardElement.querySelector('.element__like').addEventListener('click', (evt) => {
+		this._cardElement.querySelector('.element__like-button').addEventListener('click', (evt) => {
 			this._like(evt)
 		});
 	}
@@ -30,7 +34,7 @@ export class Card {
 	}
 
 	_like(evt) {
-		evt.target.classList.toggle('element__like_active')
+		evt.target.classList.toggle('element__like-button_active')
 	}
 
 	createCard() {

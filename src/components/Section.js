@@ -1,6 +1,6 @@
 export class Section{
-	constructor({items, renderer}, selector) {
-		this._dataArray = items;
+	constructor({renderer}, selector) {
+		// this._dataArray = items;
 		this._renderer = renderer;
 		this._container = document.querySelector(selector);
 	}
@@ -10,7 +10,13 @@ export class Section{
 	addItem(element) {
 		this._container.prepend(element)
 	}
-	renderItems() {
-		this._dataArray.forEach(this._renderer)
+	renderItems(obj, userId) {
+		// this._dataArray.forEach(this._renderer)
+		if (Array.isArray(obj)) {
+			obj.forEach(item => {
+					this._renderer(item, userId);
+			});
+		} else this._renderer(obj);
+
 	}
 }
