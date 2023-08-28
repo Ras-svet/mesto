@@ -19,7 +19,7 @@
 .element__trash{align-self:start;background-color:transparent;background-image:url(images/Trash.823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-repeat:no-repeat;border:0;cursor:pointer;height:19px;padding:0;position:absolute;right:20px;top:20px;width:18px}.element__trash:hover{opacity:.5}
 .element__block{align-items:flex-end;box-sizing:border-box;display:flex;flex-direction:row;justify-content:space-between;margin:25px 15px 0 21px;max-height:35px;max-width:246px}
 .element__title{font-family:Inter,Arial,sans-serif;font-size:24px;font-weight:900;line-height:29px;margin:0;max-width:196px;overflow:hidden;padding-bottom:3px;text-overflow:ellipsis;white-space:nowrap}
-.element__like{align-self:start;border:0;display:flex;flex-direction:column;height:40px;margin-right:5px;margin-top:0;padding:0;width:22px}
+.element__like{align-self:start;border:0;display:flex;flex-direction:column;height:40px;justify-content:space-between;margin-right:5px;margin-top:0;padding:0;width:22px}
 .element__like-button{align-self:start;background-color:transparent;background-image:url(images/like.6d2bfa8dda4d9faf5dd9.svg);background-position:50%;background-repeat:no-repeat;border:0;cursor:pointer;height:19px;margin-right:5px;margin-top:0;padding:0;width:22px}.element__like-button:hover{opacity:.5}
 .element__like-button_active{background-image:url(images/like_active.d3ac196915a4aeb123c9.svg)}
 .element__like-number{align-self:center;font-size:13px;font-weight:400;line-height:15.73px}
