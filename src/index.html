@@ -17,7 +17,9 @@
 		<main class="content">
 			<section class="profile">
 				<div class="profile__content">
-					<img src="<%=require('./images/400.jpg')%>" class="profile__avatar" alt="аватар профиля">
+					<div class="profile__avatar-edit">
+						<img src="<%=require('./images/400.jpg')%>" class="profile__avatar" alt="аватар профиля">
+					</div>
 					<div class="profile__info">
 						<div class="profile__block">
 							<h1 class="profile__name">РасСвет на пляже</h1>
@@ -37,7 +39,7 @@
 							<h2 class="element__title"></h2>
 							<div class="element__like">
 								<button type="button" class="element__like-button" aria-label="кнопка отметки нравится"></button>
-								<span class="element__like-number">4</span>
+								<span class="element__like-number"></span>
 							</div>
 						</div>
 					</div>
@@ -52,10 +54,10 @@
 				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы редактирования"></button>
 				<h2 class="popup__title">Редактировать профиль</h2>
 				<form class="popup__forms" name="user-information">
-					<input class="popup__field popup__field_type_name" name="nameUser" type="text" minlength="2" maxlength="40" placeholder="Имя" required>
-					<span class="popup__field-error" id="nameUser-error"></span>
-					<input class="popup__field popup__field_type_job" name="job" type="text" minlength="2" maxlength="200" placeholder="О себе" required>
-					<span class="popup__field-error" id="job-error"></span>
+					<input class="popup__field popup__field_type_name" name="name" type="text" minlength="2" maxlength="40" placeholder="Имя" required>
+					<span class="popup__field-error" id="name-error"></span>
+					<input class="popup__field popup__field_type_job" name="about" type="text" minlength="2" maxlength="200" placeholder="О себе" required>
+					<span class="popup__field-error" id="about-error"></span>
 					<button class="popup__save-button" type="submit" aria-label="кнопка сохранения изменений">Сохранить</button>
 				</form>
 			</div>
@@ -78,6 +80,24 @@
 				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы полноэкранного режима"></button>
 				<img class="popup__picture" src="#" alt="">
 				<h2 class="popup__text"></h2>
+			</div>
+		</section>
+		<section class="popup popup_type_deletion">
+			<div class="popup__container">
+				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы удаления карточки"></button>
+				<h2 class="popup__title">Вы уверены?</h2>
+				<button class="popup__save-button" type="submit" aria-label="кнопка подтверждения удаления">Да</button>
+			</div>
+		</section>
+		<section class="popup popup_type_avatar">
+			<div class="popup__container">
+				<button class="popup__close-button" type="button" aria-label="кнопка закрытия формы изменения аватара"></button>
+				<h2 class="popup__title">Обновить аватар</h2>
+				<form class="popup__forms" name="avatar-information">
+					<input class="popup__field popup__field_type_src" name="avatar" type="url" placeholder="Ссылка на картинку" required>
+					<span class="popup__field-error" id="avatar-error"></span>
+					<button class="popup__save-button popup__save-button_disabled" type="submit" aria-label="кнопка сохранения изменений">Сохранить</button>
+				</form>
 			</div>
 		</section>
 	</div>

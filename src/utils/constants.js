@@ -40,4 +40,8 @@ export const jobInput = formProfileElement.querySelector(".popup__field_type_job
 export const buttonEditProfile = document.querySelector(".profile__edit-button");
 // переменные для poopup добавления карточки
 export const popupCard = document.querySelector(".popup_type_card");
+export const buttonSavePopupCard = popupCard.querySelector(".popup__save-button")
 export const buttonAddPopupCard = document.querySelector(".profile__add-button");
+// переменные для изменения профиля
+export const buttonAvatarEdit = document.querySelector(".profile__avatar-edit");
+export const popupAvatar = document.querySelector(".popup_type_avatar")

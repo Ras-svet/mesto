@@ -1,6 +1,7 @@
 .element__like {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	border: 0;
 	width: 22px;
 	height: 40px;
