@@ -77,7 +77,7 @@ function createCard(data) {
 // добавление новой карточки
 function addCard(data) {
 	popupCardAdd.loading('Сохранение...');
-	api.addCard(data.name, data.link)
+	api.addCard(data.nameCard, data.link)
 	.then(data => {
 		const newCard = createCard(data);
 		initialCardsList.addItem(newCard);
