@@ -33,7 +33,7 @@
 .popup__picture{max-height:75vh;max-width:75vw}
 .popup__title{color:#000;font-family:Inter,Arial,sans-serif;font-size:24px;font-weight:900;line-height:29px;margin:34px 0 38px 36px}@media screen and (max-width:550px){.popup__title{font-size:18px;line-height:22px;margin-left:22px;margin-top:25px}}
 .popup__text{color:#fff;font-family:Inter,Arial,sans-serif;font-size:12px;font-weight:400;line-height:14.52px;margin:10px 0 0}
-.popup__forms{margin-left:36px;margin-top:16px}@media screen and (max-width:550px){.popup__forms{margin-left:22px;margin-top:7px}}
+.popup__forms{margin-left:36px;margin-top:16px}@media screen and (max-width:550px){.popup__forms{margin-left:22px;margin-top:37px}}
 .popup__field{border:0;border-bottom:1px solid rgba(0,0,0,.2);color:#000;font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:400;height:13.2px;line-height:17px;margin:0;overflow:hidden;padding:0 0 13px;text-overflow:ellipsis;white-space:nowrap;width:358px}@media screen and (max-width:550px){.popup__field{width:238px}}
 .popup__field-error{color:red;display:flex;font-size:12px;font-weight:400;line-height:15px;margin:5px 0 0;max-width:358px;min-height:33px;padding:0}.popup__field-error:last-of-type{margin-bottom:18px}@media screen and (max-width:550px){.popup__field-error:last-of-type{margin-bottom:45px}}
 .popup__field_type_error{border-bottom-color:red}
