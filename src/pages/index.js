@@ -45,17 +45,27 @@ const api = new Api({
 	}
 })
 
+function handleSubmit(request, popup) {
+	popup.renderLoading(true);
+	request()
+	.then(() => {
+		popup.close()
+	})
+	.catch((err) => {
+		console.log(`Ошибка при отправке запроса ${err}`)
+	})
+	.finally(() => {
+		popup.renderLoading(false)
+	})
+}
+
 let personalId
 
 Promise.all([api.getUserInfo(), api.getCards()])
 	.then(([userData, cards]) => {
 		userProfile.setUserInfo(userData);
-		userProfile.setUserPhoto(userData);
-		personalId = userData._id
-		cards.forEach(card => {
-			const cardElement = createCard(card);
-			initialCardsList.addItemByAppend(cardElement)
-		})
+		personalId = userData._id;
+		initialCardsList.renderItems(cards)
 	})
 	.catch(err => {
 		console.log(`Ошибка при отправке запроса ${err}`)
@@ -69,24 +79,20 @@ const userProfile = new UserInfo({
 
 // создание экземпляра карточки
 function createCard(data) {
-	const card = new Card(data, '#element', handleCardClick, personalId, handleLikeAdd, handleLikeRemove, removeCard, popupCardDelete);
+	const card = new Card(data, '#element', handleCardClick, personalId, removeCard, popupCardDelete, handleLikeCard);
 	const cardElement = card.createCard();
 	return cardElement
 } 
 
 // добавление новой карточки
 function addCard(data) {
-	popupCardAdd.loading('Сохранение...');
-	api.addCard(data.nameCard, data.link)
-	.then(data => {
-		const newCard = createCard(data);
-		initialCardsList.addItem(newCard);
-		popupCardAdd.close();
-		popupCardAdd.loading('Создать')
-	})
-	.catch(err => {
-		console.log(`Ошибка при отправке запроса ${err}`)
-	})
+	function makeRequestToAdd() {
+		return api.addCard(data.nameCard, data.link).then(data => {
+			const newCard = createCard(data);
+			initialCardsList.addItem(newCard)
+		})
+	}
+	handleSubmit(makeRequestToAdd, popupCardAdd)
 }
 
 // удаление карточки
@@ -108,22 +114,36 @@ const initialCardsList = new Section({
 		initialCardsList.addItemByAppend(newCard)
 	}}, '.elements')
 
+function handleLikeCard(card, cardId, likesContainer) {
+	if (card.likesNumber.some(like => {
+		return like._id === personalId
+	})) {
+		handleLikeRemove(cardId, likesContainer, card)
+	} else {
+		handleLikeAdd(cardId, likesContainer, card)
+	}
+}
+
 // лайк карточки
-function handleLikeAdd(cardId, likesContainer) {
+function handleLikeAdd(cardId, likesContainer, card) {
 	api.addLike(cardId)
 	.then(response => {
 		likesContainer.textContent = response.likes.length;
+		card.likesNumber = response.likes;
+		card.like()
 	})
 	.catch(err => {
 		console.log(`Ошибка при отправке запроса ${err}`)
 	})
 }
 
-// удалени лайка
-function handleLikeRemove(cardId, likesContainer) {
+// удаление лайка
+function handleLikeRemove(cardId, likesContainer, card) {
 	api.removeLike(cardId)
 	.then(response => {
 		likesContainer.textContent = response.likes.length;
+		card.likesNumber = response.likes;
+		card.like()
 	})
 	.catch(err => {
 		console.log(`Ошибка при отправке запроса ${err}`)
@@ -137,27 +157,22 @@ function handleCardClick(name, link) {
 
 // изменение инфрормации профиля
 function handleEditFormSubmit(body) {
-	popupProfileEdit.loading('Сохранение...')
-	api.changeUserInfo(body)
-	.then(userData => {
-		userProfile.setUserInfo(userData);
-		popupProfileEdit.close();
-		popupProfileEdit.loading('Сохранить')
-	})
+	function makeRequestToChangeInfo() {
+		return api.changeUserInfo(body).then(userData => {
+			userProfile.setUserInfo(userData)
+		})
+	}
+	handleSubmit(makeRequestToChangeInfo, popupProfileEdit)
 }
 
 // изменение аватара
 function changeAvatar(body) {
-	popupAvatarEdit.loading('Сохранение...')
-	api.changeAvatar(body)
-	.then(userData => {
-		userProfile.setUserPhoto(userData);
-		popupAvatarEdit.close();
-		popupAvatarEdit.loading('Сохранить')
-	})
-	.catch(err => {
-		console.log(`Ошибка при отправке запроса ${err}`)
-	})
+	function makeRequestToChangeAvatar() {
+		return api.changeAvatar(body).then(userData => {
+		userProfile.setUserInfo(userData)
+		})
+	}
+	handleSubmit(makeRequestToChangeAvatar, popupAvatarEdit)
 }
 
 // создание экземпляров форм
